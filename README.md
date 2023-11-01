@@ -6,10 +6,12 @@
     <h2>How to Run</h2>
     <ol>
         <li>Ensure you have JDK@17 installed on your system.</li>
-        <li>Compile the Java code using the following command from inside this repository:</li>
-        <pre><code>javac monte_carlo/src/main/java/com/monte_carlo/App.java</code></pre>
+        <li>Ensure you have Apache Maven 3.9.5 installed on your system. </li>
+        <li>Compile the Java code using the following commands from inside this repository:</li>
+        <code><pre>cd monte_carlo</code></pre>
+        <pre><code>mvn clean install</code></pre>
         <li>Run the application with the following command from inside this repository:</li>
-        <pre><code>java monte_carlo/src/main/java/com/monte_carlo/App.java</code></pre>
+        <pre><code>java -jar target/monte_carlo-MINOR.jar</code></pre>
         <li>Follow the on-screen instructions to enter values for S and N when prompted.</li>
         <li>The application will display the probability distribution table in a pop-up window.</li>
         <li>If the number of steps (S) is even, it will also display the probability of the price returning to 100 after 10 steps.</li>
