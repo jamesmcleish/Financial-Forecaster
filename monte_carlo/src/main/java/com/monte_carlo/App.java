@@ -33,11 +33,11 @@ public class App
         List<Integer> finalPrices = simulateSharePrice(S, N);  //get price list
         scanner.close();
 
-        displayPriceProbabilities(calculatePriceProbabilities(finalPrices)); //calls function to display probability table
-
         if(S%2==0) {
             System.out.println("Probability of price equal to £100 after 10 steps = " + calculatePriceProbabilities(finalPrices).get(100));
         } //display probability the price returns to original after S steps
+
+        displayPriceProbabilities(calculatePriceProbabilities(finalPrices)); //calls function to display probability table
     }
 
     public static List<Integer> simulateSharePrice(int numSteps, int numWalks) { //Method returns List<integer> of final prices
