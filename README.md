@@ -14,6 +14,7 @@
         <li>Follow the on-screen instructions to enter values for S and N when prompted.</li>
         <li>The application will display the probability distribution table in a pop-up window.</li>
         <li>If the number of steps (S) is even, it will also display the probability of the price returning to 100 after 10 steps.</li>
+        <li>To run tests run this command within monte_carlo/monte_carlo</li>
     <h2>Sample Output</h2>
     <pre><code>
     Enter a value for S (number of steps) (1-100): 10
