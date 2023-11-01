@@ -36,7 +36,7 @@ public class App
         displayPriceProbabilities(calculatePriceProbabilities(finalPrices)); //calls function to display probability table
 
         if(S%2==0) {
-            System.out.println("Probability of price equal to 100 after 10 steps = " + calculatePriceProbabilities(finalPrices).get(100));
+            System.out.println("Probability of price equal to £100 after 10 steps = " + calculatePriceProbabilities(finalPrices).get(100));
         } //display probability the price returns to original after S steps
     }
 
@@ -79,7 +79,7 @@ public class App
         model.addColumn("Probability"); //add my two columns
 
         for (Map.Entry<Integer, Double> entry : priceProbabilities.entrySet()) { //loop to add rows to the table from price probabilities map
-            model.addRow(new Object[]{entry.getKey(), entry.getValue()});
+            model.addRow(new Object[]{"£" + entry.getKey(), entry.getValue()});
         }
 
         JTable table = new JTable(model); //turns model into JTable
