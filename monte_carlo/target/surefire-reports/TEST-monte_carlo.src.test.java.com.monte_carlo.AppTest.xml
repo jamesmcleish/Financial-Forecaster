@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="monte_carlo.src.test.java.com.monte_carlo.AppTest" time="0.814" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="monte_carlo.src.test.java.com.monte_carlo.AppTest" time="0.728" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/21/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/jamesmcleish/projects/monte_carlo/monte_carlo/target/surefire/surefirebooter4937177034488032978.jar /Users/jamesmcleish/projects/monte_carlo/monte_carlo/target/surefire 2023-11-01T10-40-14_463-jvmRun1 surefire14371447262394308067tmp surefire_012922514616681206058tmp"/>
+    <property name="sun.java.command" value="/Users/jamesmcleish/projects/monte_carlo/monte_carlo/target/surefire/surefirebooter13843367768643790428.jar /Users/jamesmcleish/projects/monte_carlo/monte_carlo/target/surefire 2023-11-01T10-55-53_649-jvmRun1 surefire3259125434283367411tmp surefire_016012898752598810781tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/jamesmcleish/projects/monte_carlo/monte_carlo/target/test-classes:/Users/jamesmcleish/projects/monte_carlo/monte_carlo/target/classes:/Users/jamesmcleish/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/jamesmcleish/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/jamesmcleish/projects/monte_carlo/monte_carlo/target/surefire/surefirebooter4937177034488032978.jar"/>
+    <property name="surefire.real.class.path" value="/Users/jamesmcleish/projects/monte_carlo/monte_carlo/target/surefire/surefirebooter13843367768643790428.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="21"/>
@@ -60,8 +60,8 @@
   </properties>
   <testcase name="testCalculatePriceProbabilities" classname="monte_carlo.src.test.java.com.monte_carlo.AppTest" time="0.003"/>
   <testcase name="testSimulateSharePrice1" classname="monte_carlo.src.test.java.com.monte_carlo.AppTest" time="0"/>
-  <testcase name="testSimulateSharePrice2" classname="monte_carlo.src.test.java.com.monte_carlo.AppTest" time="0.024"/>
-  <testcase name="testCalculatePriceProbabilitiesExecutionTime" classname="monte_carlo.src.test.java.com.monte_carlo.AppTest" time="0.766"/>
+  <testcase name="testSimulateSharePrice2" classname="monte_carlo.src.test.java.com.monte_carlo.AppTest" time="0.02"/>
+  <testcase name="testCalculatePriceProbabilitiesExecutionTime" classname="monte_carlo.src.test.java.com.monte_carlo.AppTest" time="0.683"/>
   <testcase name="testProbabilityDistributionSumsToOne" classname="monte_carlo.src.test.java.com.monte_carlo.AppTest" time="0.002"/>
   <testcase name="testSimulateSharePricePriceRange" classname="monte_carlo.src.test.java.com.monte_carlo.AppTest" time="0.001"/>
 </testsuite>
