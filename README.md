@@ -11,7 +11,7 @@
         <li><a href="https://maven.apache.org/install.html">Ensure you have Apache Maven 3.9.5 installed on your system. </a></li>
         <li>Alternatively use: <code>brew install maven</code></li>
     <h3>How to Run </h3>
-        <li>Compile the Java code using the following commands from inside monte_carlo/monte_carlo:</li> <br>
+        <li>Compile the Java code using the following command from inside monte_carlo/monte_carlo:</li> <br>
         <pre><code>mvn clean install</code></pre> <br>
         <li>Run the application with the following command from inside monte_carlo/monte_carlo:</li> <br>
         <pre><code>java -jar target/monte_carlo-MINOR.jar</code></pre>
