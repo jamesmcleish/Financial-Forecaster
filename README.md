@@ -8,7 +8,7 @@
         <li>Ensure you have Apache Maven 3.9.5 installed on your system. </li>
         <li>Compile the Java code using the following commands from inside monte_carlo/monte_carlo:</li>
         <pre><code>mvn clean install</code></pre>
-        <li>Run the application with the following command from inside this repository:</li>
+        <li>Run the application with the following command from inside monte_carlo/monte_carlo:</li>
         <pre><code>java -jar target/monte_carlo-MINOR.jar</code></pre>
         <li>Follow the on-screen instructions to enter values for S and N when prompted.</li>
         <li>The application will display the probability distribution table in a pop-up window.</li>
