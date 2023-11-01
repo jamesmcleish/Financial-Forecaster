@@ -21,11 +21,11 @@
     <h3>How to Run Tests<h3>
         <pre><code>mvn test</code></pre>
     <h2>Sample Output</h2>
-    <code>
+    <pre><code>
     Enter a value for S (number of steps) (1-100): 10
     Enter a value for N (number of walks) (1-100000): 10000
     Probability of price equal to 100 after 10 steps = 0.2424
-    </code>
+    </code></pre>
     <img src="price_probabilities_table.png">
     <h2>Author</h2>
     <p>Author: James McLeish</p>
