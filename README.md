@@ -6,9 +6,9 @@
     <h2>How to Run</h2>
     <ol>
         <li>Ensure you have JDK@17 installed on your system.</li>
-        <li>Compile the Java code using the following command:</li>
+        <li>Compile the Java code using the following command from inside this repository:</li>
         <pre><code>javac monte_carlo/src/main/java/com/monte_carlo/App.java</code></pre>
-        <li>Run the application with the following command:</li>
+        <li>Run the application with the following command from inside this repository:</li>
         <pre><code>java monte_carlo/src/main/java/com/monte_carlo/App.java</code></pre>
         <li>Follow the on-screen instructions to enter values for S and N when prompted.</li>
         <li>The application will display the probability distribution table in a pop-up window.</li>
