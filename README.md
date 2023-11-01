@@ -23,9 +23,9 @@
     Probability of price equal to 100 after 10 steps = 0.0005
     </code></pre>
     <p>Probability :</p>
-    <img src="image.jpg">
+    <img src="price_probabilities_table.png">
     <h2>About the Code</h2>
-    <p>The code uses a Monte Carlo simulation to estimate the probabilities of share prices after a series of random steps. It includes methods for simulation, probability calculation, and a graphical display (though you chose to display it in the console).</p>
+    <p>The code uses a Monte Carlo simulation to estimate the probabilities of share prices after a series of random steps. It includes methods for simulation, probability calculation, and a graphical display.</p>
     <h2>Author</h2>
     <p>Author: Your Name</p>
     <h2>License</h2>
