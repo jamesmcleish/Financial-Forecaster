@@ -18,7 +18,7 @@
     <pre><code>
     Enter a value for S (number of steps) (1-100): 10
     Enter a value for N (number of walks) (1-100000): 10000
-    Probability of price equal to 100 after 10 steps = 0.2419
+    Probability of price equal to 100 after 10 steps = 0.2424
     </code></pre>
     <p>Probability :</p>
     <img src="price_probabilities_table.png">
