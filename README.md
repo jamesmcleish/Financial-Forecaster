@@ -1,6 +1,4 @@
 <html>
-<head>
-    <title>Monte Carlo Simulation Readme</title>
 </head>
     <h1>Monte Carlo Simulation - Readme</h1>
     <h2>Description</h2>
