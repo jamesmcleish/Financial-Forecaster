@@ -1,9 +1,9 @@
-package monte_carlo.src.main.java.com.monte_carlo.components;
+package monte_carlo.src.main.java.com.monte_carlo;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.List;
-import monte_carlo.src.main.java.com.monte_carlo.components.FetchPrices;
+import monte_carlo.src.main.java.com.monte_carlo.FetchPrices;
 
 public class Monte_Carlo_Advanced {
     public static void main(String[] args) {

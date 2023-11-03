@@ -1,11 +1,11 @@
-package monte_carlo.src.main.java.com.monte_carlo.components;
+package monte_carlo.src.main.java.com.monte_carlo;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.IOException;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import org.json.JSONObject;
+
 public class FetchPrices {
     public static Double priceQuote(String ticker){
         try{
@@ -29,14 +29,12 @@ public class FetchPrices {
                 }
                 reader.close();
 
-
-                JSONObject jsonResponse = new JSONObject(response.toString());
-
-                Double closingPrice = jsonResponse.getDouble("c");
+                JSONObject object = new JSONObject(response.toString());
+                Double finalPrice = object.getDouble("c");
 
                 connection.disconnect();
 
-                return closingPrice;
+                return finalPrice;
 
             } else {
                 System.out.println("Error: " + responseCode);

@@ -1,8 +1,6 @@
 package monte_carlo.src.main.java.com.monte_carlo;
 
 
-import monte_carlo.src.main.java.com.monte_carlo.components.Monte_Carlo;
-import monte_carlo.src.main.java.com.monte_carlo.components.Monte_Carlo_Advanced;
 import java.util.Scanner;
 
 public class App 
