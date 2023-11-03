@@ -1,3 +1,4 @@
 monte_carlo/src/main/java/com/monte_carlo/App.class
 monte_carlo/src/main/java/com/monte_carlo/components/Monte_Carlo.class
+monte_carlo/src/main/java/com/monte_carlo/components/FetchPrices.class
 monte_carlo/src/main/java/com/monte_carlo/components/Monte_Carlo_Advanced.class

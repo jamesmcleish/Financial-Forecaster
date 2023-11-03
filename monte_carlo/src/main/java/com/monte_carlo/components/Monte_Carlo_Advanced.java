@@ -3,16 +3,19 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.List;
+import monte_carlo.src.main.java.com.monte_carlo.components.FetchPrices;
 
 public class Monte_Carlo_Advanced {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int numWalks;
         int numDays;
-        double initialPrice = 100.0;
+        double initialPrice;
         double meanReturn = 0.01;
         double volatility = 0.2;
+        String ticker;
         Random random = new Random();
+
 
         do {
             System.out.print("Enter a value for S (number of days) (1-365): ");
@@ -24,6 +27,11 @@ public class Monte_Carlo_Advanced {
             numWalks = scanner.nextInt();
         } while (numWalks < 1 || numWalks > 100000);
 
+        System.out.println("Enter a stock ticker symbol from the FTSE100 to generate initial price");
+        ticker = scanner.next();
+        do {
+            initialPrice = getPriceByTicker(ticker);
+        } while(false);
 
         System.out.println(simulateGBM(initialPrice, meanReturn, volatility, numDays, random, numWalks));
     }
@@ -41,6 +49,10 @@ public class Monte_Carlo_Advanced {
         priceList.add(price);
         }
         return priceList;
+    }
+
+    public static Double getPriceByTicker(String ticker){
+        return FetchPrices.priceQuote(ticker);
     }
 
 }
