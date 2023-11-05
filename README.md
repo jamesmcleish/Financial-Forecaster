@@ -1,7 +1,7 @@
 <html>
     <h1>Monte Carlo Simulation - Readme</h1>
     <h2>Description</h2>
-        <p>This Java application performs a Monte Carlo simulation to calculate the probabilities of different share prices after a series of steps. It takes user input for the number of steps (S) and the number of walks (N) and simulates share price changes. The application then displays a probability distribution table.</p>
+        <p>This Java application performs a Monte Carlo simulation to calculate the probabilities of different share prices after a series of steps. It takes user input for the number of steps (S) and the number of walks (N) and simulates share price changes. This application has two different models, basic, and advanced. Basic applies +/- £1 randomly to an initial price of £100 with each step. Advanced applies geometric brownian motion to an initial share price over a number of days, the share price is called via API from finnhub.io.</p>
     <h2>Downloads</h2>
         <h3> Maven</h3>
         <li><a href="https://maven.apache.org/install.html" >Ensure you have Maven installed on your system.</a></li>
