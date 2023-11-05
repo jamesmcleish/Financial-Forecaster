@@ -16,6 +16,7 @@
         <pre><code>java -jar target/monte_carlo-MAJOR-jar-with-dependencies.jar</code></pre>
         <li>Follow the on-screen instructions to choose either a standard or an advanced simulation</li>
     <h2>Sample Output</h2>
+    <h3>Menu</h3>
         <img src="public/menu-screen.png">
     <h3>Basic</h3>
         <img src="public/basic-simulation.png">
