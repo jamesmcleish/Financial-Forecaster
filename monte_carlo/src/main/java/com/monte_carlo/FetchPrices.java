@@ -1,4 +1,4 @@
-package monte_carlo.src.main.java.com.monte_carlo;
+package com.monte_carlo;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;

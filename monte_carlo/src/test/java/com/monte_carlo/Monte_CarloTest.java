@@ -1,9 +1,8 @@
-package monte_carlo.src.test.java.com.monte_carlo;
+package com.monte_carlo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import monte_carlo.src.main.java.com.monte_carlo.Monte_Carlo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

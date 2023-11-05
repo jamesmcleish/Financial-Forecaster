@@ -1,4 +1,4 @@
-package monte_carlo.src.main.java.com.monte_carlo;
+package com.monte_carlo;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

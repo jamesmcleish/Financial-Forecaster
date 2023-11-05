@@ -1,10 +1,8 @@
-package monte_carlo.src.main.java.com.monte_carlo;
-
+package com.monte_carlo;
 
 import java.util.Scanner;
 
-public class App 
-{
+public class App {
     public static void main( String[] args )
     {
         Scanner scanner = new Scanner(System.in);
@@ -23,5 +21,4 @@ public class App
         }
 
     }
-
 }
