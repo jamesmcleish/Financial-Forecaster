@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: monte_carlo.src.test.java.com.monte_carlo.Monte_CarloTest
--------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.412 s - in monte_carlo.src.test.java.com.monte_carlo.Monte_CarloTest
