@@ -1,51 +1,111 @@
 package com.monte_carlo;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 import java.util.List;
+import java.util.Random;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.CategoryPlot;
+
+
 public class Monte_Carlo_Advanced {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int numWalks;
-        int numDays;
-        double initialPrice;
-        double meanReturn = 0.0967; //mean return of the S&P500 over 20 years
-        double volatility = 0.015; //average volatility for 2023
-        String ticker;
-        Random random = new Random();
+    private JFrame frame;
+    private JTextField numDaysField;
+    private JTextField numWalksField;
+    private JTextField tickerField;
+    private JPanel histogramPanel;
+    private JLabel averagePriceLabel;
+    private JLabel initialPriceLabel;
+
+    public Monte_Carlo_Advanced() {
+        frame = new JFrame("Monte Carlo Simulation (Advanced)");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        JButton menuButton = new JButton("Main Menu");
+        frame.add(menuButton);
+
+        JLabel numDaysLabel = new JLabel("Enter the number of days (1-252):");
+        frame.add(numDaysLabel);
+
+        numDaysField = new JTextField(5);
+        frame.add(numDaysField);
+
+        JLabel numWalksLabel = new JLabel("Enter the number of walks (1-100000):");
+        frame.add(numWalksLabel);
+
+        numWalksField = new JTextField(10);
+        frame.add(numWalksField);
+
+        JLabel tickerLabel = new JLabel("Enter a valid stock ticker symbol from the S&P500 to generate initial price:");
+        frame.add(tickerLabel);
+
+        tickerField = new JTextField(10);
+        frame.add(tickerField);
+
+        histogramPanel = new JPanel();
+        histogramPanel.setLayout(new BorderLayout());
+        histogramPanel.setPreferredSize(new Dimension(1200, 600));
 
 
-        do {
-            System.out.print("Enter a value for S (number of days) (1-252): ");
-            numDays = scanner.nextInt();
-        } while (numDays < 1 || numDays > 252); // keep inputs in range specified for number of trading days
+        JButton runButton = new JButton("Run Simulation");
+        frame.add(runButton);
 
-        do {
-            System.out.print("Enter a value for N (number of walks) (1-100000): ");
-            numWalks = scanner.nextInt();
-        } while (numWalks < 1 || numWalks > 100000);
+        initialPriceLabel = new JLabel("Initial Price: ");
+        initialPriceLabel.setVisible(false);
+        frame.add(initialPriceLabel);
 
-        System.out.println("Enter a valid stock ticker symbol from the S&P500 to generate initial price");
-        ticker = scanner.next();
+        averagePriceLabel = new JLabel("Average Price: ");
+        averagePriceLabel.setVisible(false);
+        frame.add(averagePriceLabel);
 
-        initialPrice = getPriceByTicker(ticker);
+        menuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                App.main(new String[0]);
+                frame.dispose();
+            }
+        });
 
-        List<Double> priceList = simulateGBM(initialPrice, meanReturn, volatility, numDays, random, numWalks);
-        double meanPrice = calculateMean(priceList, numWalks);
-        System.out.println("Initial price: " + initialPrice);
-        System.out.println("Mean of prices: " + meanPrice);
-        int numBins = 10; // You can adjust the number of bins as needed
-        createPriceHistogram(priceList, numBins);
+        runButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int numDays = Integer.parseInt(numDaysField.getText());
+                int numWalks = Integer.parseInt(numWalksField.getText());
+                String ticker = tickerField.getText();
+                runMonteCarloSimulation(numDays, numWalks, ticker);
+            }
+        });
+
+        frame.add(histogramPanel);  // Add the histogram panel to the frame
+        frame.pack();
+        frame.setSize(1450,1200);
+        frame.setVisible(true);
     }
 
-    public static List<Double> simulateGBM(double initialPrice, double meanReturn, double volatility, int numDays, Random random, int numWalks) {
+    public void runMonteCarloSimulation(int numDays, int numWalks, String ticker) {
+        Random random = new Random();
+        double initialPrice = getPriceByTicker(ticker);
+        List<Double> priceList = simulateGBM(initialPrice, 0.0967, 0.015, numDays, random, numWalks);
+
+        // Create and display the price histogram in the histogram panel
+        createPriceHistogram(priceList, 13);
+
+        // Display the average price next to the histogram
+        displayAveragePrice(priceList);
+    }
+
+    public List<Double> simulateGBM(double initialPrice, double meanReturn, double volatility, int numDays, Random random, int numWalks) {
         List<Double> priceList = new ArrayList<>();
 
         double dailyDrift = (meanReturn - (Math.pow(volatility, 2) / 2)) / 252.0;
@@ -64,23 +124,14 @@ public class Monte_Carlo_Advanced {
         return priceList;
     }
 
-    public static Double getPriceByTicker(String ticker){
-        return FetchPrices.priceQuote(ticker);
-    }
-    public static double calculateMean(List<Double> priceList, java.lang.Integer numWalks) {
-        if (priceList.isEmpty()) {
-            return 0.0;
-        }
-
-        double sum = 0;
-        for (double price : priceList) {
-            sum += price;
-        }
-
-        return sum / numWalks;
+    public Double getPriceByTicker(String ticker) {
+        double initialPrice = FetchPrices.priceQuote(ticker);
+        initialPriceLabel.setText("Initial Price: $" + initialPrice);
+        initialPriceLabel.setVisible(true);
+        return initialPrice;
     }
 
-    public static void createPriceHistogram(List<Double> priceList, int numBins) {
+    public void createPriceHistogram(List<Double> priceList, int numBins) {
         if (priceList.isEmpty()) {
             System.out.println("Price list is empty, cannot create a histogram.");
             return;
@@ -104,13 +155,15 @@ public class Monte_Carlo_Advanced {
         for (int i = 0; i < numBins; i++) {
             double binMin = minPrice + i * priceRange;
             double binMax = binMin + priceRange;
-            String binLabel = String.format("%.0f - %.0f", binMin, binMax); // Round to 0 decimal places
+            String binLabel = String.format("%.0f-%.0f", binMin, binMax); // Format as an integer, 0 decimal places
+            String occurrences = String.format("%.0f", (double) histogram[i]); // Format as an integer
+
             dataset.addValue(histogram[i], "Occurrences", binLabel);
         }
 
         JFreeChart histogramChart = ChartFactory.createBarChart(
                 "Price Histogram",
-                "Price Range",
+                "Price Range ($'s)",
                 "Occurrences",
                 dataset,
                 PlotOrientation.VERTICAL,
@@ -119,13 +172,39 @@ public class Monte_Carlo_Advanced {
                 false
         );
 
-        ApplicationFrame frame = new ApplicationFrame("Price Histogram");
+        CategoryPlot plot = histogramChart.getCategoryPlot();
+        CategoryAxis xAxis = (CategoryAxis) plot.getDomainAxis();
+        NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
+
+        xAxis.setTickLabelFont(new Font("SansSerif", Font.PLAIN, 10)); // Adjust font size
+        yAxis.setTickLabelFont(new Font("SansSerif", Font.PLAIN, 10)); // Adjust font size
+        yAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits()); // Set tick units to integers
+
         ChartPanel chartPanel = new ChartPanel(histogramChart);
-        frame.setContentPane(chartPanel);
-        frame.pack();
-        frame.setSize(1200, 600);
-        RefineryUtilities.centerFrameOnScreen(frame);
-        frame.setVisible(true);
+        histogramPanel.removeAll();
+        histogramPanel.add(chartPanel, BorderLayout.CENTER);
+        histogramPanel.revalidate();
+        histogramPanel.repaint();
     }
 
+    // Method to display the average price
+    public void displayAveragePrice(List<Double> priceList) {
+        if (priceList.isEmpty()) {
+            System.out.println("Price list is empty, cannot calculate the average price.");
+            return;
+        }
+
+        double sum = 0.0;
+        for (Double price : priceList) {
+            sum += price;
+        }
+        double averagePrice = sum / priceList.size();
+
+        averagePriceLabel.setText("Average Price: $" + String.format("%.2f", averagePrice));
+        averagePriceLabel.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new Monte_Carlo_Advanced());
+    }
 }

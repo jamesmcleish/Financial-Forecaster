@@ -15,19 +15,12 @@
         <pre><code>mvn clean package</code></pre>
         <pre><code>java -jar target/monte_carlo-MAJOR-jar-with-dependencies.jar</code></pre>
         <li>Follow the on-screen instructions to choose either a standard or an advanced simulation</li>
-    <h3> Standard </h3>
-        <li>Follow the on-screen instructions to enter values for S and N when prompted.</li>
-        <li>The application will display the probability distribution table in a pop-up window.</li>
-        <li>If the number of steps (S) is even, it will also display the probability of the price returning to 100 after 10 steps.</li>
     <h2>Sample Output</h2>
-        <pre><code>
-            Enter a value for S (number of steps) (1-100): 10
-            Enter a value for N (number of walks) (1-100000): 10000
-            Probability of price equal to 100 after 10 steps = 0.2424
-        </code></pre>
-        <img src="public/price_probabilities_table.png">
-    <h3> Advanced </h3>
-        <li>Coming Soon</li>
+        <img src="public/menu-screen.png">
+    <h3>Basic</h3>
+        <img src="public/basic-simulation.png">
+     <h3>Advanced</h3>
+        <img src="public/advanced-simulation.png">
     <h2>Author</h2>
         <p>Author: James McLeish</p>
 </html>
