@@ -34,7 +34,6 @@ public class AppTest {
         boolean advancedButtonExists = false;
 
         Component[] panelComponents = bottomPanel.getComponents();
-        System.out.println("bottom panel: " + Arrays.toString(panelComponents));
 
         for (Component component : panelComponents) {
             if (component instanceof JButton) {

@@ -34,26 +34,88 @@ public class Monte_Carlo_AdvancedTest {
     }
 
     @Test
-    public void testingJFrame(){
+    public void testingJFrameButtons() {
         JFrame frame = Monte_Carlo_Advanced.Monte_Carlo_Frame();
         assertNotNull(frame);
         Component[] components = frame.getContentPane().getComponents();
         JPanel menuRow = null;
-        JPanel inputPanel = null;
         JPanel outputPanel = null;
 
         for (Component component : components) {
             if (component instanceof JPanel && "menuRow".equals(component.getName())) {
                 menuRow = (JPanel) component;
-            } else if (component instanceof JPanel && "inputPanel".equals(component.getName())) {
-                inputPanel = (JPanel) component;
             } else if (component instanceof JPanel && "outputPanel".equals(component.getName())) {
                 outputPanel = (JPanel) component;
             }
         }
         assertNotNull(menuRow);
-        assertNotNull(inputPanel);
         assertNotNull(outputPanel);
+
+        boolean mainMenuButtonExists = false;
+
+        Component[] menuRowComponents = menuRow.getComponents();
+
+        for (Component component : menuRowComponents) {
+            if (component instanceof JButton) {
+                JButton button = (JButton) component;
+                if ("Main Menu".equals(button.getText())) {
+                    mainMenuButtonExists = true;
+                }
+            }
+        }
+        assertTrue(mainMenuButtonExists);
+
+        boolean runSimulationButtonExists = false;
+
+        Component[] outputPanelComponents = outputPanel.getComponents();
+
+        for (Component component : outputPanelComponents) {
+            if (component instanceof JButton) {
+                JButton button = (JButton) component;
+                if ("Run Simulation".equals(button.getText())) {
+                    runSimulationButtonExists = true;
+                }
+            }
+        }
+        assertTrue(runSimulationButtonExists);
+
     }
 
+    @Test
+    public void testingJFrameInputFields() {
+        JFrame frame = Monte_Carlo_Advanced.Monte_Carlo_Frame();
+        assertNotNull(frame);
+        Component[] components = frame.getContentPane().getComponents();
+        JPanel inputPanel = null;
+
+        for (Component component : components) {
+            if (component instanceof JPanel && "inputPanel".equals(component.getName())) {
+                inputPanel = (JPanel) component;
+            }
+        }
+        assertNotNull(inputPanel);
+        boolean numDaysFieldExists = false;
+        boolean numWalksFieldExists = false;
+        boolean tickerFieldExists = false;
+
+        Component[] inputPanelComponents = inputPanel.getComponents();
+
+        for (Component component : inputPanelComponents) {
+            if (component instanceof JTextField) {
+                JTextField numDaysField = (JTextField) component;
+                JTextField numWalksField = (JTextField) component;
+                JTextField tickerField = (JTextField) component;
+                if ("numDaysField".equals(numDaysField.getName())) {
+                    numDaysFieldExists = true;
+                }
+                else if ("numWalksField".equals(numDaysField.getName())) {
+                    numWalksFieldExists = true;
+                }
+                else if ("tickerField".equals(numDaysField.getName())) {
+                    tickerFieldExists = true;
+                }
+            }
+        }
+        assertTrue(numDaysFieldExists);
+    }
 }

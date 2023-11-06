@@ -61,18 +61,21 @@ public class Monte_Carlo_Advanced {
         inputPanel.add(numDaysLabel);
 
         numDaysField = new JTextField(5);
+        numDaysField.setName("numDaysField");
         inputPanel.add(numDaysField);
 
         JLabel numWalksLabel = new JLabel("Enter the number of walks (1-100000):");
         inputPanel.add(numWalksLabel);
 
         numWalksField = new JTextField(10);
+        numWalksField.setName("numWalksField");
         inputPanel.add(numWalksField);
 
         JLabel tickerLabel = new JLabel("Enter a valid stock ticker symbol from the S&P500 to generate initial price:");
         inputPanel.add(tickerLabel);
 
         tickerField = new JTextField(10);
+        tickerField.setName("tickerField");
         inputPanel.add(tickerField);
 
         JButton runButton = new JButton("Run Simulation");
