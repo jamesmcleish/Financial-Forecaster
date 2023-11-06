@@ -13,13 +13,17 @@ import java.util.Random;
 
 public class Monte_Carlo {
     private JFrame frame;
-    private JTextField stepsField;
-    private JTextField walksField;
-    private DefaultTableModel model;
-    private JTable table;
+    private static JTextField stepsField;
+    private static JTextField walksField;
+    private static DefaultTableModel model;
+    private static JTable table;
 
-    public Monte_Carlo() {
-        frame = new JFrame("Monte Carlo Simulation");
+    public static void main(String[] args) {
+        monteCarloFrame();
+    }
+
+    static JFrame monteCarloFrame() {
+        JFrame frame = new JFrame("Monte Carlo Simulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -30,15 +34,18 @@ public class Monte_Carlo {
         frame.add(stepsLabel);
 
         stepsField = new JTextField(5);
+        stepsField.setName("stepsField");
         frame.add(stepsField);
 
         JLabel walksLabel = new JLabel("Enter the number of walks (1-100000):");
         frame.add(walksLabel);
 
         walksField = new JTextField(10);
+        walksField.setName("walksField");
         frame.add(walksField);
 
         JButton runButton = new JButton("Run Simulation");
+        runButton.setName("runSimulationButton");
         frame.add(runButton);
 
         model = new DefaultTableModel();
@@ -74,7 +81,8 @@ public class Monte_Carlo {
                     JOptionPane.showMessageDialog(frame, "Invalid input. Please enter valid numbers.");
                 }
             }
-        });
+        }
+        );
 
         menuButton.addActionListener(new ActionListener() {
             @Override
@@ -89,9 +97,10 @@ public class Monte_Carlo {
 
         frame.setSize(1000, 500);
         frame.setVisible(true);
+        return frame;
     }
 
-    public void runMonteCarloSimulation(int numSteps, int numWalks) {
+    public static void runMonteCarloSimulation(int numSteps, int numWalks) {
         List<Integer> finalPrices = simulateSharePrice(numSteps, numWalks);
         Map<Integer, Double> priceProbabilities = calculatePriceProbabilities(finalPrices);
 
@@ -101,6 +110,10 @@ public class Monte_Carlo {
         for (Map.Entry<Integer, Double> entry : priceProbabilities.entrySet()) {
             model.addRow(new Object[]{"£" + entry.getKey(), entry.getValue()});
         }
+    }
+
+    public static JTable getTable() { //getter method for test
+        return table;
     }
 
     public static List<Integer> simulateSharePrice(int numSteps, int numWalks) {
@@ -133,9 +146,5 @@ public class Monte_Carlo {
         }
 
         return priceProbabilities;
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Monte_Carlo());
     }
 }
