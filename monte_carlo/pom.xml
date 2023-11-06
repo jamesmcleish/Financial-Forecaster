@@ -44,6 +44,12 @@
       <artifactId>mockito-testng</artifactId>
       <version>0.5.0</version>
     </dependency>
+      <dependency>
+          <groupId>org.easytesting</groupId>
+          <artifactId>fest-swing</artifactId>
+          <version>1.2.1</version>
+          <scope>test</scope>
+      </dependency>
 
 
   </dependencies>

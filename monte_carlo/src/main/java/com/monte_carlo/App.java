@@ -10,7 +10,7 @@ public class App {
         SwingUtilities.invokeLater(() -> createAndShowGUI());
     }
 
-    private static void createAndShowGUI() {
+    static JFrame createAndShowGUI() {
         JFrame frame = new JFrame("Monte Carlo Simulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
@@ -28,6 +28,7 @@ public class App {
         JButton advancedButton = new JButton("Advanced Monte Carlo Simulation");
 
         JLabel label = new JLabel("Choose an option:");
+        bottomPanel.setName("bottomPanel");
         bottomPanel.add(label);
         bottomPanel.add(basicButton);
         bottomPanel.add(advancedButton);
@@ -53,5 +54,6 @@ public class App {
         frame.pack();
         frame.setSize(1000,200);
         frame.setVisible(true);
+        return frame;
     }
 }

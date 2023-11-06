@@ -19,22 +19,26 @@ import org.jfree.chart.plot.CategoryPlot;
 
 
 public class Monte_Carlo_Advanced {
-    private JFrame frame;
-    private JTextField numDaysField;
-    private JTextField numWalksField;
-    private JTextField tickerField;
-    private JPanel histogramPanel;
-    private JLabel averagePriceLabel;
-    private JLabel initialPriceLabel;
+    private static JFrame frame;
+    private static JTextField numDaysField;
+    private static JTextField numWalksField;
+    private static JTextField tickerField;
+    private static JPanel histogramPanel;
+    private static JLabel averagePriceLabel;
+    private static JLabel initialPriceLabel;
 
-    private JPanel inputPanel;
-    private JPanel outputPanel;
-    private JPanel bottomPanel;
+    private static JPanel inputPanel;
+    private static JPanel outputPanel;
+    private static JPanel bottomPanel;
 
-    private JPanel menuRow;
+    private static JPanel menuRow;
+    public static void main(String[] args) {
+        Monte_Carlo_Frame();
+    }
 
-    public Monte_Carlo_Advanced() {
-        frame = new JFrame("Monte Carlo Simulation (Advanced)");
+
+    static JFrame Monte_Carlo_Frame() {
+        JFrame frame = new JFrame("Monte Carlo Simulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -127,21 +131,23 @@ public class Monte_Carlo_Advanced {
         frame.pack();
         frame.setSize(1300,1200);
         frame.setVisible(true);
+        menuRow.setName("menuRow");
+        inputPanel.setName("inputPanel");
+        outputPanel.setName("outputPanel");
+        return frame;
     }
 
-    public void runMonteCarloSimulation(int numDays, int numWalks, String ticker) {
+    public static void runMonteCarloSimulation(int numDays, int numWalks, String ticker) {
         Random random = new Random();
         double initialPrice = getPriceByTicker(ticker);
         List<Double> priceList = simulateGBM(initialPrice, 0.0967, 0.15, numDays, random, numWalks);
 
-        // Create and display the price histogram in the histogram panel
         createPriceHistogram(priceList, 13);
 
-        // Display the average price next to the histogram
         displayAveragePrice(priceList);
     }
 
-    public List<Double> simulateGBM(double initialPrice, double meanReturn, double volatility, int numDays, Random random, int numWalks) {
+    public static List<Double> simulateGBM(double initialPrice, double meanReturn, double volatility, int numDays, Random random, int numWalks) {
         List<Double> priceList = new ArrayList<>();
 
         double dailyDrift = (meanReturn - (Math.pow(volatility, 2) / 2)) / 252.0;
@@ -160,7 +166,7 @@ public class Monte_Carlo_Advanced {
         return priceList;
     }
 
-    public Double getPriceByTicker(String ticker) {
+    public static Double getPriceByTicker(String ticker) {
         double initialPrice = FetchPrices.priceQuote(ticker);
         initialPriceLabel.setText("Initial Price: $" + initialPrice + " ");
         initialPriceLabel.setVisible(true);
@@ -172,7 +178,7 @@ public class Monte_Carlo_Advanced {
         }
     }
 
-    public void createPriceHistogram(List<Double> priceList, int numBins) {
+    public static void createPriceHistogram(List<Double> priceList, int numBins) {
         if (priceList.isEmpty()) {
             System.out.println("Price list is empty, cannot create a histogram.");
             return;
@@ -229,7 +235,7 @@ public class Monte_Carlo_Advanced {
     }
 
     // Method to display the average price
-    public void displayAveragePrice(List<Double> priceList) {
+    public static void displayAveragePrice(List<Double> priceList) {
         if (priceList.isEmpty()) {
             System.out.println("Price list is empty, cannot calculate the average price.");
             return;
@@ -243,9 +249,5 @@ public class Monte_Carlo_Advanced {
 
         averagePriceLabel.setText("Average Price: $" + String.format("%.2f", averagePrice));
         averagePriceLabel.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Monte_Carlo_Advanced());
     }
 }

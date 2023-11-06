@@ -1,4 +1,4 @@
 com/monte_carlo/Monte_CarloTest.class
 com/monte_carlo/Monte_Carlo_AdvancedTest.class
 com/monte_carlo/FetchPricesTest.class
-monte_carlo/src/test/java/com/monte_carlo/AppTest.class
+com/monte_carlo/AppTest.class
