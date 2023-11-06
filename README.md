@@ -9,10 +9,14 @@
         <h3> Java </h3>
         <li><a href="https://www.oracle.com/uk/java/technologies/downloads/" >Ensure you have JDK@17 installed on your system.</a></li>
         <li>Alternatively use: <code>brew install openjdk@17</code> </br> </li>
-    <h3>How to Run </h3>
+    <h3>How to Run Mac</h3>
         <li>Run the application with the following commands from inside the repository:</li> <br>
         <pre><code>cd monte_carlo</code></pre>
         <pre><code>java -jar target/monte_carlo-MAJOR-jar-with-dependencies.jar</code></pre>
+        <li>Follow the on-screen instructions to choose either a standard or an advanced simulation</li>
+    <h3>How to Run Windows</h3>
+        <li>The application is a clickable jar file with all dependencies packages </li> <br>
+        <li>Run the file from monte_carlo/target</li>
         <li>Follow the on-screen instructions to choose either a standard or an advanced simulation</li>
     <h2>Sample Output</h2>
     <h3>Menu</h3>
@@ -24,6 +28,12 @@
      <h3>How to Test </h3>
         <pre><code>cd monte_carlo</code></pre>
         <pre><code>mvn test</code></pre>
+    <h2>Sources<h2>
+        <p>
+            <li><a href="https://medium.com/@alexandragrosu03/java-gui-programming-with-swing-9f62285e3090">Helpful JFrame article</a></li>
+            <li>Options, Futures, and Other Derivates - John C. Hull</li>
+            <li><a href="https://stackoverflow.com/questions/tagged/maven-assembly-plugin">Stack Overflow to help with my maven assembly configuration</a></li>
+        </p>
     <h2>Author</h2>
         <p>Author: James McLeish</p>
 </html>
