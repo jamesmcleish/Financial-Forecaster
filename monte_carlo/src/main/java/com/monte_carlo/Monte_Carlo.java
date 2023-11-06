@@ -103,7 +103,7 @@ public class Monte_Carlo {
         }
     }
 
-    public List<Integer> simulateSharePrice(int numSteps, int numWalks) {
+    public static List<Integer> simulateSharePrice(int numSteps, int numWalks) {
         List<Integer> finalPrices = new ArrayList<>();
         Random random = new Random();
 
@@ -119,7 +119,7 @@ public class Monte_Carlo {
         return finalPrices;
     }
 
-    public Map<Integer, Double> calculatePriceProbabilities(List<Integer> finalPrices) {
+    public static Map<Integer, Double> calculatePriceProbabilities(List<Integer> finalPrices) {
         Map<Integer, Double> priceProbabilities = new HashMap<>();
         int totalWalks = finalPrices.size();
 
