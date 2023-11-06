@@ -16,7 +16,7 @@
         <li>Follow the on-screen instructions to choose either a standard or an advanced simulation</li>
     <h3>How to Run Windows</h3>
         <li>The application is a clickable jar file with all dependencies packages </li> <br>
-        <li>Run the file from monte_carlo/target</li>
+        <li>Run the file from monte_carlo/target/monte_carlo-MAJOR-jar-with-dependencies.jar</li>
         <li>Follow the on-screen instructions to choose either a standard or an advanced simulation</li>
     <h2>Sample Output</h2>
     <h3>Menu</h3>
