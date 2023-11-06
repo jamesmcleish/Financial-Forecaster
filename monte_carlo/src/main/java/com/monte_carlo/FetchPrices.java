@@ -7,6 +7,8 @@ import java.io.IOException;
 import org.json.JSONObject;
 
 public class FetchPrices {
+
+
     public static Double priceQuote(String ticker){
         try{
         String apiURL = "https://finnhub.io/api/v1/quote?symbol=" + ticker;

@@ -54,9 +54,25 @@ public class Monte_Carlo {
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int numSteps = Integer.parseInt(stepsField.getText());
-                int numWalks = Integer.parseInt(walksField.getText());
-                runMonteCarloSimulation(numSteps, numWalks);
+                String numDaysText = stepsField.getText();
+                String numWalksText = walksField.getText();
+
+                int numDays;
+                int numWalks;
+
+                try {
+                    numDays = Integer.parseInt(numDaysText);
+                    numWalks = Integer.parseInt(numWalksText);
+
+                    if (numDays>0 && numDays<253 && numWalks>0 && numWalks<100001) {
+
+                        runMonteCarloSimulation(numDays, numWalks);
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Invalid input. Days must be between 1 and 252, Walks between 1 and 100000.");
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Invalid input. Please enter valid numbers.");
+                }
             }
         });
 

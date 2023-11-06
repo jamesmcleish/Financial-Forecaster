@@ -27,47 +27,65 @@ public class Monte_Carlo_Advanced {
     private JLabel averagePriceLabel;
     private JLabel initialPriceLabel;
 
+    private JPanel inputPanel;
+    private JPanel outputPanel;
+    private JPanel bottomPanel;
+
+    private JPanel menuRow;
+
     public Monte_Carlo_Advanced() {
         frame = new JFrame("Monte Carlo Simulation (Advanced)");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout(FlowLayout.LEFT));
 
+        menuRow = new JPanel();
+        menuRow.setLayout(new BoxLayout(menuRow, BoxLayout.X_AXIS));
+
+        inputPanel = new JPanel();
+        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.X_AXIS));
+
+        outputPanel = new JPanel();
+        outputPanel.setLayout(new BoxLayout(outputPanel, BoxLayout.X_AXIS));
+
+        bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
+
         JButton menuButton = new JButton("Main Menu");
-        frame.add(menuButton);
+        menuRow.add(menuButton);
 
         JLabel numDaysLabel = new JLabel("Enter the number of days (1-252):");
-        frame.add(numDaysLabel);
+        inputPanel.add(numDaysLabel);
 
         numDaysField = new JTextField(5);
-        frame.add(numDaysField);
+        inputPanel.add(numDaysField);
 
         JLabel numWalksLabel = new JLabel("Enter the number of walks (1-100000):");
-        frame.add(numWalksLabel);
+        inputPanel.add(numWalksLabel);
 
         numWalksField = new JTextField(10);
-        frame.add(numWalksField);
+        inputPanel.add(numWalksField);
 
         JLabel tickerLabel = new JLabel("Enter a valid stock ticker symbol from the S&P500 to generate initial price:");
-        frame.add(tickerLabel);
+        inputPanel.add(tickerLabel);
 
         tickerField = new JTextField(10);
-        frame.add(tickerField);
+        inputPanel.add(tickerField);
+
+        JButton runButton = new JButton("Run Simulation");
+        outputPanel.add(runButton);
 
         histogramPanel = new JPanel();
         histogramPanel.setLayout(new BorderLayout());
         histogramPanel.setPreferredSize(new Dimension(1200, 600));
 
 
-        JButton runButton = new JButton("Run Simulation");
-        frame.add(runButton);
-
         initialPriceLabel = new JLabel("Initial Price: ");
         initialPriceLabel.setVisible(false);
-        frame.add(initialPriceLabel);
+        outputPanel.add(initialPriceLabel);
 
         averagePriceLabel = new JLabel("Average Price: ");
         averagePriceLabel.setVisible(false);
-        frame.add(averagePriceLabel);
+        outputPanel.add(averagePriceLabel);
 
         menuButton.addActionListener(new ActionListener() {
             @Override
@@ -80,23 +98,41 @@ public class Monte_Carlo_Advanced {
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int numDays = Integer.parseInt(numDaysField.getText());
-                int numWalks = Integer.parseInt(numWalksField.getText());
+                String numDaysText = numDaysField.getText();
+                String numWalksText = numWalksField.getText();
                 String ticker = tickerField.getText();
-                runMonteCarloSimulation(numDays, numWalks, ticker);
+
+                int numDays;
+                int numWalks;
+
+                try {
+                    numDays = Integer.parseInt(numDaysText);
+                    numWalks = Integer.parseInt(numWalksText);
+
+                    if (numDays>0 && numDays<253 && numWalks>0 && numWalks<100001) {
+                        runMonteCarloSimulation(numDays, numWalks, ticker);
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Invalid input. Days must be between 1 and 252, Walks between 1 and 100000.");
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Invalid input. Please enter valid numbers.");
+                }
             }
         });
-
-        frame.add(histogramPanel);  // Add the histogram panel to the frame
+        bottomPanel.add(histogramPanel);  // Add the histogram panel to the frame
+        frame.add(menuRow);
+        frame.add(inputPanel);
+        frame.add(outputPanel);
+        frame.add(bottomPanel);
         frame.pack();
-        frame.setSize(1450,1200);
+        frame.setSize(1300,1200);
         frame.setVisible(true);
     }
 
     public void runMonteCarloSimulation(int numDays, int numWalks, String ticker) {
         Random random = new Random();
         double initialPrice = getPriceByTicker(ticker);
-        List<Double> priceList = simulateGBM(initialPrice, 0.0967, 0.015, numDays, random, numWalks);
+        List<Double> priceList = simulateGBM(initialPrice, 0.0967, 0.15, numDays, random, numWalks);
 
         // Create and display the price histogram in the histogram panel
         createPriceHistogram(priceList, 13);
@@ -126,9 +162,14 @@ public class Monte_Carlo_Advanced {
 
     public Double getPriceByTicker(String ticker) {
         double initialPrice = FetchPrices.priceQuote(ticker);
-        initialPriceLabel.setText("Initial Price: $" + initialPrice);
+        initialPriceLabel.setText("Initial Price: $" + initialPrice + " ");
         initialPriceLabel.setVisible(true);
-        return initialPrice;
+        if(initialPrice!=0){
+            return initialPrice;
+        } else {
+            JOptionPane.showMessageDialog(frame, "Please input a valid stock ticker.");
+            return null;
+        }
     }
 
     public void createPriceHistogram(List<Double> priceList, int numBins) {
